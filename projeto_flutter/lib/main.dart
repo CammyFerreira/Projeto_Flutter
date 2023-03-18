@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/views/home.dart';
+import 'package:projeto_flutter/views/cadastro.dart';
 import 'package:projeto_flutter/views/splash.dart';
 import 'package:projeto_flutter/views/login.dart';
 
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/': (_) => const HomePage(),
         '/splash': (_) => const SplashView(),
         '/login': (_) => LoginView(),
+        '/cadastro': (_) => const CadastroView(),
       },
     );
   }

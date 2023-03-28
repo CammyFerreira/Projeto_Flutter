@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/views/home.dart';
 import 'package:projeto_flutter/views/splash.dart';
 import 'package:projeto_flutter/views/login.dart';
 
@@ -15,10 +16,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.cyan,
       ),
-      initialRoute: '/splash',
+      initialRoute: '/',
       routes: {
+        '/': (_) => const HomePage(),
         '/splash': (_) => const SplashView(),
         '/login': (_) => const LoginView(),
       },

@@ -11,41 +11,45 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      padding: const EdgeInsets.all(28),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset(
-            'images/icon.png',
-            width: 98,
-            height: 98,
-          ),
-          const TextField(
-            decoration: InputDecoration(
-              label: Text('Login'),
+      body: Container(
+        padding: const EdgeInsets.all(28),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              'images/icon.png',
+              width: 120,
+              height: 120,
             ),
-          ),
-          const TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              label: Text('Senha'),
+            const Text('Login', textAlign: TextAlign.start,),
+            const TextField(
+              decoration: InputDecoration(
+                label: Text('Login'),
+              ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 32),
-            child: ElevatedButton(
+            const TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                label: Text('Senha'),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 32),
+              child: ElevatedButton(
+                onPressed: null,
+                child: Text('Entrar'),
+              ),
+            ),
+            const ElevatedButton(
               onPressed: null,
-              child: Text('Entrar'),
+              child: Text(
+                'Cadastre-se',
+              ),
             ),
-          ),
-          const ElevatedButton(
-            onPressed: null,
-            child: Text('Cadastre-se'),
-          ),
-        ],
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

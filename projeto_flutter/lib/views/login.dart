@@ -98,15 +98,17 @@ class LoginView extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              TextButton(
-                style: TextButton.styleFrom(
-                  foregroundColor: const Color.fromARGB(255, 11, 203, 176),
-                ),
-                onPressed: () {
-                  //TODO: Ir para a tela de cadastro
-                },
-                child: const Text(
-                  'Cadastre-se',
+              Flexible(
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: const Color.fromARGB(255, 11, 203, 176),
+                  ),
+                  onPressed: () {
+                    //TODO: Ir para a tela de cadastro
+                  },
+                  child: const Text(
+                    'Cadastre-se',
+                  ),
                 ),
               ),
             ],

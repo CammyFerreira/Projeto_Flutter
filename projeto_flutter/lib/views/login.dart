@@ -1,14 +1,11 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:validadores/validadores.dart';
+import 'package:projeto_flutter/controllers/login_controller.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class LoginView extends StatelessWidget {
+  final LoginController _controller = LoginController();
+  LoginView({Key? key}) : super(key: key);
 
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
@@ -34,11 +31,13 @@ class _LoginViewState extends State<LoginView> {
                 textAlign: TextAlign.start,
               ),
               TextFormField(
+                onChanged: _controller.setLogin,
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return "*campo obrigatório";
-                  } else {
-                    return null;
+                    return "Campo obrigatório";
+                  }
+                  if (!EmailValidator.validate(value, true)) {
+                    return 'Email inválido';
                   }
                 },
                 decoration: const InputDecoration(
@@ -47,11 +46,10 @@ class _LoginViewState extends State<LoginView> {
               ),
               TextFormField(
                 obscureText: true,
+                onChanged: _controller.setPass,
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return "*campo obrigatório";
-                  } else {
-                    return null;
+                    return "Campo obrigatório";
                   }
                 },
                 decoration: const InputDecoration(
@@ -60,32 +58,42 @@ class _LoginViewState extends State<LoginView> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 32),
-                child: GestureDetector(
-                  child: Container(
-                    height: 30,
-                    width: 120,
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 11, 203, 176),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(4),
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Entrar',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  onTap: () {
-                    if (formKey.currentState!.validate()) {
-                      print('Valido');
-                    }
-                  },
+                child: ValueListenableBuilder<bool>(
+                  valueListenable: _controller.isLoading,
+                  builder: (_, isLoading, __) => isLoading
+                      ? const CircularProgressIndicator()
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 118, 50, 213),
+                            foregroundColor: Colors.white,
+                          ),
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              _controller.auth().then((result) {
+                                if (result) {
+                                  Navigator.of(context)
+                                      .pushReplacementNamed('/');
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Email ou senha inválidos'),
+                                      duration: Duration(seconds: 5),
+                                    ),
+                                  );
+                                }
+                              });
+                            }
+                          },
+                          child: const Text('Login'),
+                        ),
                 ),
               ),
               const Spacer(),
               TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: const Color.fromARGB(255, 118, 50, 213),
+                ),
                 onPressed: () {
                   //TODO: Ir para a tela de cadastro
                 },

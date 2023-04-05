@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<HomePage> {
   int currentIndex = 0;
-  final screens = const [
+  final screens = [
     HomeView(),
     Text('buscar'),
     Text('categorias'),

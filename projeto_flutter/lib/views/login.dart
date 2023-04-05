@@ -78,7 +78,7 @@ class LoginView extends StatelessWidget {
                           ),
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              _controller.auth().then((result) {
+                              _controller.login().then((result) {
                                 if (result) {
                                   Navigator.of(context)
                                       .pushReplacementNamed('/');

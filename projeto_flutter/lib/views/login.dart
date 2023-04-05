@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:projeto_flutter/controllers/login_controller.dart';
 
 class LoginView extends StatelessWidget {
@@ -22,13 +23,20 @@ class LoginView extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 120),
                 child: Image.asset(
                   'images/icon.png',
-                  width: 98,
-                  height: 98,
+                  width: 120,
+                  height: 120,
                 ),
               ),
-              const Text(
+              Text(
                 'Login',
                 textAlign: TextAlign.start,
+                style: GoogleFonts.lato(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 36,
+                  textStyle: const TextStyle(
+                    color: Color.fromARGB(255, 255, 94, 61),
+                  ),
+                ),
               ),
               TextFormField(
                 onChanged: _controller.setLogin,
@@ -65,7 +73,7 @@ class LoginView extends StatelessWidget {
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromARGB(255, 118, 50, 213),
+                                const Color.fromARGB(255, 11, 203, 176),
                             foregroundColor: Colors.white,
                           ),
                           onPressed: () {
@@ -92,7 +100,7 @@ class LoginView extends StatelessWidget {
               const Spacer(),
               TextButton(
                 style: TextButton.styleFrom(
-                  foregroundColor: const Color.fromARGB(255, 118, 50, 213),
+                  foregroundColor: const Color.fromARGB(255, 11, 203, 176),
                 ),
                 onPressed: () {
                   //TODO: Ir para a tela de cadastro

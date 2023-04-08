@@ -39,6 +39,7 @@ class LoginView extends StatelessWidget {
                 ),
               ),
               TextFormField(
+                maxLength: 100,
                 onChanged: _controller.setLogin,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -53,6 +54,7 @@ class LoginView extends StatelessWidget {
                 ),
               ),
               TextFormField(
+                maxLength: 50,
                 obscureText: true,
                 onChanged: _controller.setPass,
                 validator: (value) {

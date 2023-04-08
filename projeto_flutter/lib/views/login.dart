@@ -78,19 +78,7 @@ class LoginView extends StatelessWidget {
                           ),
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              _controller.login().then((result) {
-                                if (result) {
-                                  Navigator.of(context)
-                                      .pushReplacementNamed('/');
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Email ou senha inválidos'),
-                                      duration: Duration(seconds: 5),
-                                    ),
-                                  );
-                                }
-                              });
+                              _controller.login(context);
                             }
                           },
                           child: const Text('Login'),

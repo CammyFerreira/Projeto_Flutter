@@ -1,51 +1,110 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:projeto_flutter/controllers/login_controller.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class LoginView extends StatelessWidget {
+  final LoginController _controller = LoginController();
+  LoginView({Key? key}) : super(key: key);
 
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
     return Scaffold(
-        body: Container(
-      padding: const EdgeInsets.all(28),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset(
-            'images/icon.png',
-            width: 98,
-            height: 98,
+      body: Form(
+        key: formKey,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 28),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 120),
+                child: Image.asset(
+                  'images/icon.png',
+                  width: 120,
+                  height: 120,
+                ),
+              ),
+              Text(
+                'Login',
+                textAlign: TextAlign.start,
+                style: GoogleFonts.lato(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 36,
+                  textStyle: const TextStyle(
+                    color: Color.fromARGB(255, 255, 94, 61),
+                  ),
+                ),
+              ),
+              TextFormField(
+                maxLength: 100,
+                onChanged: _controller.setLogin,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Campo obrigatório";
+                  }
+                  if (!EmailValidator.validate(value, true)) {
+                    return 'Email inválido';
+                  }
+                },
+                decoration: const InputDecoration(
+                  label: Text('Email'),
+                ),
+              ),
+              TextFormField(
+                maxLength: 50,
+                obscureText: true,
+                onChanged: _controller.setPass,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Campo obrigatório";
+                  }
+                },
+                decoration: const InputDecoration(
+                  label: Text('Senha'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 32),
+                child: ValueListenableBuilder<bool>(
+                  valueListenable: _controller.isLoading,
+                  builder: (_, isLoading, __) => isLoading
+                      ? const CircularProgressIndicator()
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 11, 203, 176),
+                            foregroundColor: Colors.white,
+                          ),
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              _controller.login(context);
+                            }
+                          },
+                          child: const Text('Login'),
+                        ),
+                ),
+              ),
+              const Spacer(),
+              Flexible(
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: const Color.fromARGB(255, 11, 203, 176),
+                  ),
+                  onPressed: () {
+                    //TODO: Ir para a tela de cadastro
+                  },
+                  child: const Text(
+                    'Cadastre-se',
+                  ),
+                ),
+              ),
+            ],
           ),
-          const TextField(
-            decoration: InputDecoration(
-              label: Text('Login'),
-            ),
-          ),
-          const TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              label: Text('Senha'),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 32),
-            child: ElevatedButton(
-              onPressed: null,
-              child: Text('Entrar'),
-            ),
-          ),
-          const ElevatedButton(
-            onPressed: null,
-            child: Text('Cadastre-se'),
-          ),
-        ],
+        ),
       ),
-    ));
+    );
   }
 }

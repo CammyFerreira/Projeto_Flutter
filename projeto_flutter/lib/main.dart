@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/views/home.dart';
 import 'package:projeto_flutter/views/splash.dart';
 import 'package:projeto_flutter/views/login.dart';
 
@@ -11,16 +12,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const int primaryValue = 0xff0bcbb0;
+    const MaterialColor primaryColor = MaterialColor(
+      primaryValue,
+      <int, Color>{
+        50: Color(0xff0bcbb0),
+        100: Color(0xff0bcbb0),
+        200: Color(0xff0bcbb0),
+        300: Color(0xff0bcbb0),
+        400: Color(0xff0bcbb0),
+        500: Color(primaryValue),
+        600: Color(0xff0bcbb0),
+        700: Color(0xff0bcbb0),
+        800: Color(0xff0bcbb0),
+        900: Color(0xff0bcbb0),
+      },
+    );
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: primaryColor,
       ),
-      initialRoute: '/splash',
+      initialRoute: '/login',
       routes: {
+        '/': (_) => const HomePage(),
         '/splash': (_) => const SplashView(),
-        '/login': (_) => const LoginView(),
+        '/login': (_) => LoginView(),
       },
     );
   }

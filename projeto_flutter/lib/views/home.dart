@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 class _MyHomePageState extends State<HomePage> {
   int currentIndex = 0;
   final screens = [
-    HomeView(),
+    const HomeView(),
     Text('buscar'),
     Text('categorias'),
     Text('carrinho'),

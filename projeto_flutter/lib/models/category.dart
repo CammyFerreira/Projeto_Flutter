@@ -1,19 +1,19 @@
 class Categoria {
   int idCategoria;
   String nomeCategoria;
-  String? descricaoCategoria;
+  String descricaoCategoria;
 
   Categoria({
     required this.idCategoria,
     required this.nomeCategoria,
-    this.descricaoCategoria, 
+    required this.descricaoCategoria, 
   });
 
   factory Categoria.fromJson(Map<String, dynamic> json) {
     return Categoria(
-      idCategoria: json['idCategoria'],
-      nomeCategoria: json['nomeCategoria'],
-      descricaoCategoria: json['descricaoCategoria'],
+      idCategoria: json['id_categoria'],
+      nomeCategoria: json['nome_categoria'],
+      descricaoCategoria: json['descricao_categoria'],
     );
   }
 }

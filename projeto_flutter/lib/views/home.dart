@@ -15,7 +15,7 @@ class _MyHomePageState extends State<HomePage> {
   final screens = [
     HomeView(),
     Text('buscar'),
-    // CategoryView(),
+    CategoryView(),
     Text('carrinho'),
     LoginView(),
   ];

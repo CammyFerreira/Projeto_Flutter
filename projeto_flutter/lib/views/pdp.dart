@@ -61,15 +61,21 @@ class PDPView extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      "R\$ ${double.parse(product.preco).toStringAsFixed(2)}}",
+                      "R\$ ${double.parse(product.preco).toStringAsFixed(2)}",
                       style: const TextStyle(fontSize: 20),
                     ),
                   ],
                 ),
                 const SizedBox(height: 16),
-                Text(
-                  product.descricao,
-                  style: const TextStyle(fontSize: 16),
+                SizedBox(
+                  height: 340,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      product.descricao,
+                      style: const TextStyle(fontSize: 16),
+                      overflow: TextOverflow.fade,
+                    ),
+                  ),
                 ),
               ],
             ),

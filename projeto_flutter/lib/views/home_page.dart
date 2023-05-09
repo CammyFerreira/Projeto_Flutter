@@ -14,7 +14,7 @@ class HomeView extends StatelessWidget {
     List<int> list = [1, 2, 3, 4, 5];
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(top: 24),
+        padding: const EdgeInsets.only(top: 32),
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(

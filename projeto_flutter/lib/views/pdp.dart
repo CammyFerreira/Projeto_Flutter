@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:projeto_flutter/helpers/helpers.dart';
+import 'package:projeto_flutter/helpers/helpers.dart';
 import 'package:projeto_flutter/models/product.dart';
 
 class PDPView extends StatelessWidget {
@@ -41,11 +41,11 @@ class PDPView extends StatelessWidget {
                 bottomRight: Radius.circular(10),
               ),
             ),
-            // child: Helpers.getProductImage(
-            //   '',
-            //   310,
-            //   double.infinity,
-            // ),
+            child: Helpers.getProductImage(
+              '',
+              310,
+              double.infinity,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),

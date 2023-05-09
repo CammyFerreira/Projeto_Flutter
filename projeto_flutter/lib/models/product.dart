@@ -1,5 +1,5 @@
 class Product {
-  int id;
+  int idProduto;
   String nome;
   String descricao;
   String preco;
@@ -7,7 +7,7 @@ class Product {
   int produtoAtivo;
 
   Product({
-    required this.id,
+    required this.idProduto,
     required this.nome,
     required this.descricao,
     required this.preco,
@@ -17,11 +17,11 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id: json['id'],
-      nome: json['nome'],
-      descricao: json['descricao'],
-      preco: json['preco'],
-      desconto: json['desconto'],
+      idProduto: json['id_produto'],
+      nome: json['nome_produto'],
+      descricao: json['descricao_produto'],
+      preco: json['preco_produto'],
+      desconto: json['desconto_produto'],
       produtoAtivo: json['produto_ativo'],
     );
   }

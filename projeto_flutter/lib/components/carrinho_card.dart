@@ -5,51 +5,69 @@ class CarrinhoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          SizedBox(
-            child: Image.asset(
-              'images/logo.png',
-              height: 60,
-              width: 60,
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              child: Image.asset(
+                'images/logo.png',
+                height: 80,
+                width: 80,
+              ),
             ),
-          ),
-          Column(
-            children: [
-              Text('Lego Batman'),
-              Text('2'),
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.add_circle_outline_rounded,
-                    ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text('Lego Batman'),
+                const Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 8,
                   ),
-                  Text('1'),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.remove_circle_outline_rounded,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.delete,
+                  child: Text('Quantidade'),
                 ),
-              ),
-              Text('R\$200,00'),
-            ],
-          ),
-        ],
+                Row(
+                  children: [
+                    IconButton(
+                      padding: const EdgeInsets.only(right: 6),
+                      constraints: const BoxConstraints(),
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.add_circle_outline_rounded,
+                      ),
+                    ),
+                    const Text('1'),
+                    IconButton(
+                      padding: const EdgeInsets.only(left: 6),
+                      constraints: const BoxConstraints(),
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.remove_circle_outline_rounded,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                IconButton(
+                  color: Colors.red,
+                  padding: const EdgeInsets.only(bottom: 24),
+                  constraints: const BoxConstraints(),
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.delete,
+                  ),
+                ),
+                const Text('R\$200,00'),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

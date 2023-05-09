@@ -11,19 +11,54 @@ class CarrinhoView extends StatefulWidget {
 }
 
 class _CarrinhoViewState extends State<CarrinhoView> {
-
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Carrinho'),
       ),
       body: Column(
-        children: const [
-          CarrinhoCard(),
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical:4 ),
+            child: CarrinhoCard(),
+          ),
+           const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical:4 ),
+            child: CarrinhoCard(),
+          ),
+           const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical:4 ),
+            child: CarrinhoCard(),
+          ),
+          const Spacer(),
+          const Divider(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 4,),
+                      child: Text('Total'),
+                    ),
+                    Text('R\$10,00'),
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Fechar Pedido'),
+                ),
+              ],
+            ),
+          )
         ],
       ),
-      
     );
   }
 }

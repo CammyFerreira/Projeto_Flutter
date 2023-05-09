@@ -49,7 +49,7 @@ class _CategoryViewState extends State<CategoryView> {
                 ),
               ),
             ),
-            title: Text(_categorias[index]!.nomeCategoria),
+            title: Text(_categorias[index]?.nomeCategoria ?? ''),
           );
         },
       ),

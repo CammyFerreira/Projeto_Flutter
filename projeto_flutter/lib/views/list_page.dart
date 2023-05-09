@@ -68,14 +68,14 @@ class _ListPageState extends State<ListPage> {
             ),
             onTap: () async {
               final response = await http.get(Uri.parse(
-                  'http://10.0.2.2:8000/api/produtos/${_products[index].idProduto}'));
+                  'http://10.0.2.2:8000/api/produtos?filtro=id_produto:${_products[index].idProduto}'));
               if (response.statusCode == 200) {
                 final productDetails = json.decode(response.body);
-                Navigator.push(
-                  this as BuildContext,
-                  MaterialPageRoute(
-                      builder: (context) => PDPView(product: productDetails)),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //       builder: (context) => PDPView(product: productDetails)),
+                // );
               } else {
                 throw Exception('Failed to load product details');
               }

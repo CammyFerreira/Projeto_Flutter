@@ -22,12 +22,18 @@ class CarrinhoCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Text('Lego Batman'),
+                const Text(
+                  'Lego Batman',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
                 const Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: 8,
                   ),
-                  child: Text('Quantidade'),
+                  child: Text(
+                    'Quantidade',
+                    style: TextStyle(fontSize: 12),
+                  ),
                 ),
                 Row(
                   children: [
@@ -36,6 +42,7 @@ class CarrinhoCard extends StatelessWidget {
                       constraints: const BoxConstraints(),
                       onPressed: () {},
                       icon: const Icon(
+                        size: 20,
                         Icons.add_circle_outline_rounded,
                       ),
                     ),
@@ -45,6 +52,7 @@ class CarrinhoCard extends StatelessWidget {
                       constraints: const BoxConstraints(),
                       onPressed: () {},
                       icon: const Icon(
+                        size: 20,
                         Icons.remove_circle_outline_rounded,
                       ),
                     ),
@@ -60,6 +68,7 @@ class CarrinhoCard extends StatelessWidget {
                   constraints: const BoxConstraints(),
                   onPressed: () {},
                   icon: const Icon(
+                    size: 20,
                     Icons.delete,
                   ),
                 ),

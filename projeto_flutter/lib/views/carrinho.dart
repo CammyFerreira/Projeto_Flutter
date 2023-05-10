@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_flutter/components/carrinho_card.dart';
 import 'package:projeto_flutter/controllers/categorias_controller.dart';
 import 'package:projeto_flutter/models/category.dart';
+import 'package:projeto_flutter/views/fragments/endereco.dart';
 
 class CarrinhoView extends StatefulWidget {
   const CarrinhoView({super.key});
@@ -31,6 +32,7 @@ class _CarrinhoViewState extends State<CarrinhoView> {
             padding: EdgeInsets.symmetric(horizontal: 8, vertical:4 ),
             child: CarrinhoCard(),
           ),
+          EnderecoCard(),
           const Spacer(),
           const Divider(),
           Padding(

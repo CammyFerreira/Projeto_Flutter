@@ -10,7 +10,7 @@ class CategoryView extends StatefulWidget {
 }
 
 class _CategoryViewState extends State<CategoryView> {
- final CategoriasController _categoriasController = CategoriasController();
+  final CategoriasController _categoriasController = CategoriasController();
   List<Categoria?> _categorias = [];
 
   @override
@@ -26,19 +26,18 @@ class _CategoryViewState extends State<CategoryView> {
     });
   }
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Categorias'),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
+        separatorBuilder: (context, index) => const Divider(),
         itemCount: _categorias.length,
         itemBuilder: (context, index) {
           return ListTile(
-            onTap: () {
-              print(_categorias[index]!.nomeCategoria);
-            },
+            onTap: () {},
             leading: Container(
               width: 50,
               height: 50,
@@ -50,7 +49,7 @@ class _CategoryViewState extends State<CategoryView> {
                 ),
               ),
             ),
-            title: Text(_categorias[index]!.nomeCategoria),
+            title: Text(_categorias[index]?.nomeCategoria ?? ''),
           );
         },
       ),

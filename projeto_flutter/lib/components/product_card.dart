@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, required this.name, required this.description, required this.price, required this.discount, this.onTap});
+  const ProductCard({
+    super.key,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.discount,
+    this.onTap,
+  });
 
   final String name;
   final String description;
   final String price;
   final String discount;
   final Function()? onTap;
-
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +32,7 @@ class ProductCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _getImage(),
-                _getName(),
+                Expanded(child: _getName()),
                 _getDescription(),
                 Padding(
                   padding: const EdgeInsets.only(top: 4),
@@ -41,7 +47,7 @@ class ProductCard extends StatelessWidget {
     );
   }
 
-    Text _getName() {
+  Text _getName() {
     return Text(
       name,
       style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -64,7 +70,7 @@ class ProductCard extends StatelessWidget {
         text: 'R\$${double.parse(price).toStringAsFixed(2)}',
         style: const TextStyle(
           color: Colors.black,
-          fontSize: 12,
+          fontSize: 10,
           decoration: TextDecoration.lineThrough,
         ),
       ),
@@ -72,10 +78,17 @@ class ProductCard extends StatelessWidget {
   }
 
   Text _getPriceWithDiscount() {
-    return Text(
-      'R\$${double.parse(discount).toStringAsFixed(2)}',
-      style: const TextStyle(fontSize: 12),
-    );
+    final priceWithDiscount = double.parse(price) - double.parse(discount);
+    if (discount.isNotEmpty) {
+      return Text(
+        'R\$${priceWithDiscount.toStringAsFixed(2)}',
+        style: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
+      );
+    }
+    return const Text('');
   }
 
   Image _getImage() {

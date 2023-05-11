@@ -32,55 +32,9 @@ class PDPView extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-              ),
-            ),
-            child: Helpers.getProductImage(
-              '',
-              310,
-              double.infinity,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      product.nome,
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Text(
-                      "R\$ ${double.parse(product.preco).toStringAsFixed(2)}",
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  height: 340,
-                  child: SingleChildScrollView(
-                    child: Text(
-                      product.descricao,
-                      style: const TextStyle(fontSize: 16),
-                      overflow: TextOverflow.fade,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
+          _getImage(),
+          _getTitle(),
+          _getDescription(),
           const Spacer(),
           ElevatedButton(
             onPressed: () {},
@@ -90,6 +44,86 @@ class PDPView extends StatelessWidget {
             ),
             child: const Text("Adicionar ao carrinho"),
           )
+        ],
+      ),
+    );
+  }
+
+  Container _getImage() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(10),
+          bottomRight: Radius.circular(10),
+        ),
+      ),
+      child: Helpers.getProductImage(
+        '',
+        310,
+        double.infinity,
+      ),
+    );
+  }
+
+  Padding _getDescription() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: SizedBox(
+        height: 340,
+        child: SingleChildScrollView(
+          child: Text(
+            product.descricao,
+            style: const TextStyle(fontSize: 16),
+            overflow: TextOverflow.fade,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding _getTitle() {
+    final priceWithDiscount =
+        double.parse(product.preco) - double.parse(product.desconto);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            product.nome,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            overflow: TextOverflow.ellipsis,
+          ),
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: RichText(
+                  text: TextSpan(
+                    text:
+                        'R\$ ${double.parse(product.preco).toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      decoration: TextDecoration.lineThrough,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Text(
+                  "R\$ ${priceWithDiscount.toStringAsFixed(2)}",
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

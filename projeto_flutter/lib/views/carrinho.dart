@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/components/carrinho_card.dart';
-import 'package:projeto_flutter/controllers/categorias_controller.dart';
-import 'package:projeto_flutter/models/category.dart';
 import 'package:projeto_flutter/views/fragments/endereco.dart';
 
 class CarrinhoView extends StatefulWidget {
@@ -18,48 +16,59 @@ class _CarrinhoViewState extends State<CarrinhoView> {
       appBar: AppBar(
         title: const Text('Carrinho'),
       ),
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical:4 ),
-            child: CarrinhoCard(),
-          ),
-           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical:4 ),
-            child: CarrinhoCard(),
-          ),
-           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical:4 ),
-            child: CarrinhoCard(),
-          ),
-          EnderecoCard(),
-          const Spacer(),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 4,),
-                      child: Text('Total'),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return const Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          child: CarrinhoCard(),
+                        );
+                      },
                     ),
-                    Text('R\$10,00'),
+                    const EnderecoCard(),
                   ],
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Fechar Pedido'),
-                ),
-              ],
+              ),
             ),
-          )
-        ],
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.only(
+                          bottom: 4,
+                        ),
+                        child: Text('Total'),
+                      ),
+                      Text('R\$10,00'),
+                    ],
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Fechar Pedido'),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

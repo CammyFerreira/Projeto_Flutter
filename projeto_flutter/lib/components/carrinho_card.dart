@@ -72,7 +72,20 @@ class CarrinhoCard extends StatelessWidget {
                     Icons.delete,
                   ),
                 ),
-                const Text('R\$200,00'),
+                RichText(
+                  text: TextSpan(
+                    text: 'R\$${double.parse('350').toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                      decoration: TextDecoration.lineThrough,
+                    ),
+                  ),
+                ),
+                Text(
+                  'R\$${double.parse('200').toStringAsFixed(2)}',
+                  style: const TextStyle(fontSize: 12),
+                ),
               ],
             ),
           ],

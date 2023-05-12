@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 class EnderecoCard extends StatelessWidget {
   const EnderecoCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 149),
+      padding: const EdgeInsets.only(top: 70),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -24,11 +22,11 @@ class EnderecoCard extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
                    Padding(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       vertical: 10,
                     ),
                     child: Row(
-                      children: [
+                      children: const [
                         Text(
                           'Rua:',
                           style: TextStyle(fontSize: 12),
@@ -49,7 +47,7 @@ class EnderecoCard extends StatelessWidget {
                     ),
                     
                   ),
-                  Text(
+                  const Text(
                           'Cidade/Estado:',
                           style: TextStyle(fontSize: 12),
                         ),

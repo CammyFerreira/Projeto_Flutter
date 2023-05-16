@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/controllers/cart_controller.dart';
 import 'package:projeto_flutter/helpers/helpers.dart';
 import 'package:projeto_flutter/models/product.dart';
 
@@ -24,7 +25,7 @@ class PDPView extends StatelessWidget {
               Icons.shopping_cart,
             ),
             onPressed: () {
-              //TODO navegar para o carrinho
+              Navigator.of(context).pushNamed('/carrinho');
             },
           ),
         ],
@@ -37,7 +38,9 @@ class PDPView extends StatelessWidget {
           _getDescription(),
           const Spacer(),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              await CartController.adicionar(41, product.idProduto);
+            },
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 50),
               fixedSize: const Size(200, 50),

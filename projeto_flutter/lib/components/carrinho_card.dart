@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/models/product.dart';
 
-class CarrinhoCard extends StatelessWidget {
-  const CarrinhoCard({super.key});
+class CarrinhoCard extends StatefulWidget {
+  const CarrinhoCard({
+    required this.produto,
+    super.key,
+  });
+  final Product produto;
 
+  @override
+  State<CarrinhoCard> createState() => _CarrinhoCardState();
+}
+
+class _CarrinhoCardState extends State<CarrinhoCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -22,16 +32,16 @@ class CarrinhoCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Text(
-                  'Lego Batman',
-                  style: TextStyle(fontWeight: FontWeight.w500),
+                Text(
+                  widget.produto.nome,
+                  style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: 8,
                   ),
                   child: Text(
-                    'Quantidade',
+                    'Quantidade:',
                     style: TextStyle(fontSize: 12),
                   ),
                 ),
@@ -83,7 +93,7 @@ class CarrinhoCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'R\$${double.parse('200').toStringAsFixed(2)}',
+                  'R\$${(double.parse(widget.produto.preco) - double.parse(widget.produto.desconto)).toStringAsFixed(2)}',
                   style: const TextStyle(fontSize: 12),
                 ),
               ],

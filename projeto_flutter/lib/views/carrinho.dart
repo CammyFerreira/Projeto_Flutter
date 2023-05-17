@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/components/carrinho_card.dart';
 import 'package:projeto_flutter/controllers/cart_controller.dart';
+import 'package:projeto_flutter/controllers/order_controller.dart';
 import 'package:projeto_flutter/models/cart.dart';
 import 'package:projeto_flutter/views/empty_cart.dart';
 import 'package:projeto_flutter/views/fragments/endereco.dart';
@@ -134,7 +135,10 @@ class _CarrinhoViewState extends State<CarrinhoView> {
                             ],
                           ),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              Navigator.of(context).pushNamed('/finalizado');
+                              await OrderController().fecharPedido();
+                            },
                             child: const Text('Fechar Pedido'),
                           ),
                         ],

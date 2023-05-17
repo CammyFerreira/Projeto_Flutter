@@ -7,12 +7,24 @@ import 'package:projeto_flutter/models/product.dart';
 final LoginController _controller = LoginController();
 
 class CartController {
+  int quantidade = 1;
+
+  void incrementarQuantidade() {
+    quantidade++;
+  }
+
+  void decrementarQuantidade() {
+    if (quantidade > 1) {
+      quantidade--;
+    }
+  }
+
   static const String baseUrl = "http://10.0.2.2:8000/api/carrinho";
 
   Future<List<CarrinhoItem>> listarCarrinho({int? userId}) async {
-    userId ??= await _controller.getUserId();
+    userId ??= await _controller.getUserId(); 
 
-    final response = await http.get(Uri.parse('$baseUrl/41'));
+    final response = await http.get(Uri.parse('$baseUrl/$userId'));
     if (response.statusCode == 200) {
       final List<dynamic> json = jsonDecode(response.body);
 
@@ -26,8 +38,6 @@ class CartController {
         carrinhoItens.add(carrinhoItem);
       }
       return carrinhoItens;
-    } else if (response.statusCode == 204) {
-      throw Exception();
     } else {
       throw Exception("Falha ao listar carrinho");
     }
@@ -45,7 +55,8 @@ class CartController {
     }
   }
 
-  static Future<void> adicionar(int userId, int produtoId) async {
+  Future<void> adicionar(int produtoId, {int? userId}) async {
+    userId ??= await _controller.getUserId(); 
     final response = await http.post(
       Uri.parse('$baseUrl/$userId'),
       headers: <String, String>{'Content-Type': 'application/json'},
@@ -54,6 +65,7 @@ class CartController {
         'ITEM_QTD': 1,
       }),
     );
+    await listarCarrinho();
     if (response.statusCode == 201) {
       return;
     } else {
@@ -61,7 +73,8 @@ class CartController {
     }
   }
 
-  static Future<void> atualizar(int userId, int produtoId, int itemQtd) async {
+  Future<void> atualizar(int produtoId, int itemQtd, {int? userId}) async {
+    userId ??= await _controller.getUserId(); 
     final response = await http.put(
       Uri.parse('$baseUrl/$userId/$produtoId'),
       headers: <String, String>{'Content-Type': 'application/json'},
@@ -76,7 +89,8 @@ class CartController {
     }
   }
 
-  static Future<void> deletar(int userId, int produtoId) async {
+  Future<void> deletar(int produtoId, {int? userId}) async {
+    userId ??= await _controller.getUserId(); 
     final response = await http.put(
       Uri.parse('$baseUrl/$userId/item/$produtoId'),
       headers: <String, String>{'Content-Type': 'application/json'},

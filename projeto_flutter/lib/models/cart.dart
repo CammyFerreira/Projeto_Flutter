@@ -3,13 +3,13 @@ import 'package:projeto_flutter/models/product.dart';
 class CarrinhoItem {
   int? usuarioId;
   int? produtoId;
-  int? itemQtd;
+  int itemQtd;
   Product? produto;
 
   CarrinhoItem({
     this.usuarioId,
     this.produtoId,
-    this.itemQtd,
+    required this.itemQtd,
     this.produto,
   });
 

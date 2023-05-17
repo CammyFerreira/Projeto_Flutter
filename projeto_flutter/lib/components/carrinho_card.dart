@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/controllers/cart_controller.dart';
 import 'package:projeto_flutter/models/product.dart';
 
 class CarrinhoCard extends StatefulWidget {
@@ -13,6 +14,8 @@ class CarrinhoCard extends StatefulWidget {
 }
 
 class _CarrinhoCardState extends State<CarrinhoCard> {
+  final CartController _controller = CartController();
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -50,20 +53,28 @@ class _CarrinhoCardState extends State<CarrinhoCard> {
                     IconButton(
                       padding: const EdgeInsets.only(right: 6),
                       constraints: const BoxConstraints(),
-                      onPressed: () {},
-                      icon: const Icon(
-                        size: 20,
-                        Icons.add_circle_outline_rounded,
-                      ),
-                    ),
-                    const Text('1'),
-                    IconButton(
-                      padding: const EdgeInsets.only(left: 6),
-                      constraints: const BoxConstraints(),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          _controller.decrementarQuantidade();
+                        });
+                      },
                       icon: const Icon(
                         size: 20,
                         Icons.remove_circle_outline_rounded,
+                      ),
+                    ),
+                    Text('${_controller.quantidade}'),
+                    IconButton(
+                      padding: const EdgeInsets.only(left: 6),
+                      constraints: const BoxConstraints(),
+                      onPressed: () {
+                        setState(() {
+                          _controller.incrementarQuantidade();
+                        });
+                      },
+                      icon: const Icon(
+                        size: 20,
+                        Icons.add_circle_outline_rounded,
                       ),
                     ),
                   ],
@@ -76,24 +87,37 @@ class _CarrinhoCardState extends State<CarrinhoCard> {
                   color: Colors.red,
                   padding: const EdgeInsets.only(bottom: 24),
                   constraints: const BoxConstraints(),
-                  onPressed: () {},
+                  onPressed: () async {
+                    _controller.deletar(widget.produto.idProduto);
+                    await _controller.listarCarrinho();
+                  },
                   icon: const Icon(
                     size: 20,
                     Icons.delete,
                   ),
                 ),
                 RichText(
-                  text: TextSpan(
-                    text: 'R\$${double.parse('350').toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 12,
-                      decoration: TextDecoration.lineThrough,
-                    ),
-                  ),
+                  text: widget.produto.desconto != '0.00'
+                      ? TextSpan(
+                          text: 'R\$${double.parse(widget.produto.preco).toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        )
+                      : TextSpan(
+                          text: 'R\$${double.parse(widget.produto.preco).toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                          ),
+                        ),
                 ),
                 Text(
-                  'R\$${(double.parse(widget.produto.preco) - double.parse(widget.produto.desconto)).toStringAsFixed(2)}',
+                  widget.produto.desconto == '0.00'
+                      ? ''
+                      : 'R\$${(double.parse(widget.produto.preco) - double.parse(widget.produto.desconto)).toStringAsFixed(2)}',
                   style: const TextStyle(fontSize: 12),
                 ),
               ],

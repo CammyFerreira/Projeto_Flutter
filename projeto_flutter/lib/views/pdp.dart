@@ -39,7 +39,11 @@ class PDPView extends StatelessWidget {
           const Spacer(),
           ElevatedButton(
             onPressed: () async {
-              await CartController.adicionar(41, product.idProduto);
+              try {
+                await CartController().adicionar(product.idProduto);
+              } catch (e) {
+                throw Exception(e);
+              }
             },
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 50),

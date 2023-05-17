@@ -31,7 +31,7 @@ class LoginController {
       );
       if (resposta.statusCode == 200) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setInt('USUARIO_ID', json.decode(resposta.body)['USUARIO_ID']);
+        prefs.setInt('USUARIO_ID', json.decode(resposta.body)['user_id']);
         Navigator.of(context).pushReplacementNamed('/');
         return true;
       } else {

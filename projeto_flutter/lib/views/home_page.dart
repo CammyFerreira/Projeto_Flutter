@@ -97,6 +97,115 @@ class HomeView extends StatelessWidget {
                   ],
                 ),
               ),
+              Container(
+                height: 200,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: GridView.count(
+                  mainAxisSpacing: 5,
+                  crossAxisSpacing: 5,
+                  primary: false,
+                  crossAxisCount: 4,
+                  childAspectRatio: 2.0,
+                  children: <Widget>[
+                    ElevatedButton(
+                      onPressed: () {
+                        // Lógica do botão
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal[200],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Teste'),
+                    ),
+                   ElevatedButton(
+                      onPressed: () {
+                        // Lógica do botão
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal[200],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Teste'),
+                    ),
+                   ElevatedButton(
+                      onPressed: () {
+                        // Lógica do botão
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal[200],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Teste'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Lógica do botão
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal[200],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Teste'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Lógica do botão
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal[200],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Teste'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Lógica do botão
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal[200],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Teste'),
+                    ),
+                   ElevatedButton(
+                      onPressed: () {
+                        // Lógica do botão
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal[200],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Teste'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Lógica do botão
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal[200],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Teste'),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),

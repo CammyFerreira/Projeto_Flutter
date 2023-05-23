@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_flutter/views/home.dart';
 import 'package:projeto_flutter/views/splash.dart';
 import 'package:projeto_flutter/views/login.dart';
+import 'package:projeto_flutter/views/profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,11 +36,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: primaryColor,
       ),
-      initialRoute: '/login',
+      initialRoute: '/profile',
       routes: {
         '/': (_) => const HomePage(),
         '/splash': (_) => const SplashView(),
         '/login': (_) => LoginView(),
+        '/profile': (_) => UserProfileScreen(),
       },
     );
   }

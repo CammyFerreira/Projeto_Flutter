@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/views/home_page.dart';
 import 'package:projeto_flutter/views/login.dart';
+import 'package:projeto_flutter/views/profile.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,7 +18,8 @@ class _MyHomePageState extends State<HomePage> {
     Text('buscar'),
     Text('categorias'),
     Text('carrinho'),
-    LoginView(),
+    UserProfileScreen(),
+    
   ];
 
   @override

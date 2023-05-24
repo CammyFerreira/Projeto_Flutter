@@ -66,26 +66,32 @@ class ProductCard extends StatelessWidget {
 
   RichText _getPrice() {
     return RichText(
-      text: TextSpan(
-        text: 'R\$${double.parse(price).toStringAsFixed(2)}',
-        style: const TextStyle(
-          color: Colors.black,
-          fontSize: 10,
-          decoration: TextDecoration.lineThrough,
-        ),
-      ),
+      text: discount != '0.00'
+          ? TextSpan(
+              text: 'R\$${double.parse(price).toStringAsFixed(2)}',
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 10,
+                decoration: TextDecoration.lineThrough,
+              ),
+            )
+          : TextSpan(
+              text: 'R\$${double.parse(price).toStringAsFixed(2)}',
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 12,
+              ),
+            ),
     );
   }
 
   Text _getPriceWithDiscount() {
-    final priceWithDiscount = double.parse(price) - double.parse(discount);
     if (discount.isNotEmpty) {
       return Text(
-        'R\$${priceWithDiscount.toStringAsFixed(2)}',
-        style: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-        ),
+        discount == '0.00'
+            ? ''
+            : 'R\$${(double.parse(price) - double.parse(discount)).toStringAsFixed(2)}',
+        style: const TextStyle(fontSize: 12),
       );
     }
     return const Text('');

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:projeto_flutter/controllers/cart_controller.dart';
 import 'package:projeto_flutter/helpers/helpers.dart';
 import 'package:projeto_flutter/models/product.dart';
@@ -40,6 +41,15 @@ class PDPView extends StatelessWidget {
           ElevatedButton(
             onPressed: () async {
               try {
+                Fluttertoast.showToast(
+                  msg: 'Produto adicionado ao carrinho',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 3,
+                  backgroundColor: const Color.fromRGBO(15, 240, 188, 1),
+                  textColor: Colors.black87,
+                  fontSize: 16.0,
+                );
                 await CartController().adicionar(product.idProduto);
               } catch (e) {
                 throw Exception(e);
@@ -49,7 +59,10 @@ class PDPView extends StatelessWidget {
               minimumSize: const Size(double.infinity, 50),
               fixedSize: const Size(200, 50),
             ),
-            child: const Text("Adicionar ao carrinho"),
+            child: const Text(
+              "Adicionar ao carrinho",
+              style: TextStyle(fontSize: 16),
+            ),
           )
         ],
       ),
@@ -108,25 +121,33 @@ class PDPView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 12),
                 child: RichText(
-                  text: TextSpan(
-                    text:
-                        'R\$ ${double.parse(product.preco).toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      decoration: TextDecoration.lineThrough,
-                    ),
-                  ),
+                  text: product.desconto != '0.00'
+                      ? TextSpan(
+                          text:
+                              'R\$${double.parse(product.preco).toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        )
+                      : TextSpan(
+                          text:
+                              'R\$${double.parse(product.preco).toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 12),
                 child: Text(
-                  "R\$ ${priceWithDiscount.toStringAsFixed(2)}",
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  product.desconto == '0.00'
+                      ? ''
+                      : 'R\$${(double.parse(product.preco) - double.parse(product.desconto)).toStringAsFixed(2)}',
+                  style: const TextStyle(fontSize: 20),
                 ),
               ),
             ],

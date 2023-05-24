@@ -94,7 +94,7 @@ class LoginView extends StatelessWidget {
                     foregroundColor: const Color.fromARGB(255, 11, 203, 176),
                   ),
                   onPressed: () {
-                    //TODO: Ir para a tela de cadastro
+                   Navigator.pushNamed(context, '/cadastro');
                   },
                   child: const Text(
                     'Cadastre-se',

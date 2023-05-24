@@ -4,6 +4,8 @@ import 'package:projeto_flutter/views/carrinho.dart';
 import 'package:projeto_flutter/views/categorias_view.dart';
 import 'package:projeto_flutter/views/home_page.dart';
 import 'package:projeto_flutter/views/login.dart';
+import 'package:projeto_flutter/views/profile.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,7 +21,7 @@ class _MyHomePageState extends State<HomePage> {
     const Busca(),
     const CategoryView(),
     const CarrinhoView(),
-    LoginView(),
+    UserProfileScreen(),
   ];
 
   @override

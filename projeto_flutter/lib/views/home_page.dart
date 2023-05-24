@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<int> list = [1, 2, 3, 4, 5];
+    List<int> list = [1, 2, 3];
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 32),
@@ -26,9 +26,16 @@ class HomeView extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(10))),
+                    color: Colors.white70,
+                    border: Border.all(
+                      color: Colors.deepPurple[200]!,
+                      width: 2,
+                      style: BorderStyle.solid,
+                    ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Row(
                     children: <Widget>[
@@ -53,18 +60,19 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               CarouselSlider(
-                options: CarouselOptions(),
+                options: CarouselOptions(
+                  autoPlay: true,
+                ),
                 items: list
                     .map((item) => Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8, vertical: 8),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            decoration: const BoxDecoration(
-                                color: Colors.green,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                            child: Text(item.toString()),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              'images/carrinhoBanner.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ))
                     .toList(),
@@ -132,7 +140,6 @@ class HomeView extends StatelessWidget {
                   ],
                 ),
               ),
-              
             ],
           ),
         ),

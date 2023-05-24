@@ -15,9 +15,9 @@ class _MyHomePageState extends State<HomePage> {
   int currentIndex = 0;
   final screens = [
     const HomeView(),
-    Text('buscar'),
-    CategoryView(),
-    CarrinhoView(),
+    const Text('buscar'),
+    const CategoryView(),
+    const CarrinhoView(),
     LoginView(),
   ];
 

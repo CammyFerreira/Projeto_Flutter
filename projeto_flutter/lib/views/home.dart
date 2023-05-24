@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/views/carrinho.dart';
 import 'package:projeto_flutter/views/categorias_view.dart';
 import 'package:projeto_flutter/views/home_page.dart';
 import 'package:projeto_flutter/views/login.dart';
@@ -16,7 +17,7 @@ class _MyHomePageState extends State<HomePage> {
     const HomeView(),
     Text('buscar'),
     CategoryView(),
-    Text('carrinho'),
+    CarrinhoView(),
     LoginView(),
   ];
 

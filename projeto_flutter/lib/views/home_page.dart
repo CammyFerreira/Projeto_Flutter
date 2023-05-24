@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/components/categorias_home.dart';
+import 'package:projeto_flutter/views/categorias_view.dart';
 import 'package:projeto_flutter/views/fragments/caroussel_products.dart';
 import 'package:projeto_flutter/views/list_page.dart';
 
@@ -97,6 +99,40 @@ class HomeView extends StatelessWidget {
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Categorias',
+                            style: TextStyle(
+                              fontSize: 24,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const CategoryView(),
+                                ),
+                              );
+                            },
+                            child: const Text('Ver todas'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const CategoriasHome(),
+                  ],
+                ),
+              ),
+              
             ],
           ),
         ),

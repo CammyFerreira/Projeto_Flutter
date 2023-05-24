@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController {
   ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
@@ -28,6 +30,8 @@ class LoginController {
         const Duration(seconds: 6),
       );
       if (resposta.statusCode == 200) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setInt('USUARIO_ID', json.decode(resposta.body)['user_id']);
         Navigator.of(context).pushReplacementNamed('/');
         return true;
       } else {
@@ -57,12 +61,18 @@ class LoginController {
         fontSize: 16.0,
       );
       return false;
-    } catch (e) {
-      print('Erro no login: $e');
+    } catch (e,s) {
+      print('Erro no login: $e $s');
       return false;
     } finally {
       client.close();
       isLoading.value = false;
     }
+  }
+
+  Future<int?> getUserId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int? userId = prefs.getInt('USUARIO_ID');
+    return userId;
   }
 }

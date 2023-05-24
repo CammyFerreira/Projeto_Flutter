@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/views/carrinho.dart';
 import 'package:projeto_flutter/views/home.dart';
 import 'package:projeto_flutter/views/list_page.dart';
+import 'package:projeto_flutter/views/pedido_finalizado.dart';
 import 'package:projeto_flutter/views/splash.dart';
 import 'package:projeto_flutter/views/login.dart';
 
@@ -42,6 +44,8 @@ class MyApp extends StatelessWidget {
         '/splash': (_) => const SplashView(),
         '/login': (_) => LoginView(),
         '/list': (_) => const ListPage(),
+        '/carrinho': (_) => const CarrinhoView(),
+        '/finalizado': (_) => const PedidoFinalizado(),
       },
     );
   }

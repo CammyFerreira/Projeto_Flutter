@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<int> list = [1, 2, 3];
+    List<String> list = ['images/carrinhoBanner.png', 'images/barbieBanner.png', 'images/pokemonBanner.png'];
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 32),
@@ -74,7 +74,7 @@ class HomeView extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.asset(
-                              'images/carrinhoBanner.png',
+                              item,
                               fit: BoxFit.cover,
                             ),
                           ),

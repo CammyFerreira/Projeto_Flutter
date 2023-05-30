@@ -23,13 +23,7 @@ class _CarrinhoViewState extends State<CarrinhoView> {
     super.initState();
     _futureCarrinho = _listarCarrinho();
   }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _futureCarrinho = _listarCarrinho();
-  }
-
+  
   Future<List<CarrinhoItem>> _listarCarrinho() async {
     try {
       final carrinhoItens = await cartController.listarCarrinho();
@@ -77,7 +71,9 @@ class _CarrinhoViewState extends State<CarrinhoView> {
               );
             } else if (snapshot.hasData) {
               final List<CarrinhoItem> carrinho = snapshot.data!;
-              if (carrinho.isNotEmpty) {
+              // Verificar se todos os produtos têm quantidade zero
+              bool todosZerados = carrinho.every((item) => item.itemQtd == 0);
+              if (carrinho.isNotEmpty && !todosZerados) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -146,12 +142,12 @@ class _CarrinhoViewState extends State<CarrinhoView> {
                     ),
                   ],
                 );
+              } else {
+                return const EmptyCart();
               }
             } else if (!snapshot.hasData) {
-              // Carrinho vazio
               return const EmptyCart();
             }
-            // Tratamento para outros casos
             return const Center(
               child: Text('Falha ao carregar carrinho'),
             );

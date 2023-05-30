@@ -1,19 +1,19 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/components/categorias_home.dart';
+import 'package:projeto_flutter/views/busca.dart';
 import 'package:projeto_flutter/views/categorias_view.dart';
 import 'package:projeto_flutter/views/fragments/caroussel_products.dart';
 import 'package:projeto_flutter/views/list_page.dart';
 
 final themeMode = ValueNotifier(2);
-final TextEditingController _searchQueryController = TextEditingController();
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<int> list = [1, 2, 3];
+    List<String> list = ['images/carrinhoBanner.png', 'images/barbieBanner.png', 'images/pokemonBanner.png'];
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 32),
@@ -38,22 +38,26 @@ class HomeView extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Row(
-                    children: <Widget>[
+                    children: [
                       Expanded(
                         child: TextField(
-                          controller: _searchQueryController,
+                          enabled: true,
+                          readOnly: true,
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => const Busca(),
+                            ),
+                          ),
                           decoration: const InputDecoration(
                             hintText: 'Pesquisar...',
                             border: InputBorder.none,
                           ),
                         ),
                       ),
-                      IconButton(
-                        icon: const Icon(Icons.search),
-                        onPressed: () {
-                          String query = _searchQueryController.text;
-                          print('Buscando por: $query');
-                        },
+                      const IconButton(
+                        icon: Icon(Icons.search),
+                        onPressed: null
                       ),
                     ],
                   ),
@@ -70,7 +74,7 @@ class HomeView extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.asset(
-                              'images/carrinhoBanner.png',
+                              item,
                               fit: BoxFit.cover,
                             ),
                           ),

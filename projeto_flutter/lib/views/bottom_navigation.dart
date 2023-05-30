@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/views/busca.dart';
 import 'package:projeto_flutter/views/carrinho.dart';
 import 'package:projeto_flutter/views/categorias_view.dart';
 import 'package:projeto_flutter/views/home_page.dart';
@@ -15,7 +16,7 @@ class _MyHomePageState extends State<HomePage> {
   int currentIndex = 0;
   final screens = [
     const HomeView(),
-    const Text('buscar'),
+    const Busca(),
     const CategoryView(),
     const CarrinhoView(),
     LoginView(),

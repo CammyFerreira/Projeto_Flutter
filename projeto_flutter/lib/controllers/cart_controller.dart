@@ -92,10 +92,10 @@ class CartController {
   Future<void> deletar(int produtoId, {int? userId}) async {
     userId ??= await _controller.getUserId(); 
     final response = await http.put(
-      Uri.parse('$baseUrl/$userId/item/$produtoId'),
+      Uri.parse('$baseUrl/deletar/$userId'),
       headers: <String, String>{'Content-Type': 'application/json'},
       body: jsonEncode(<String, int>{
-        'ITEM_QTD': 0,
+        'PRODUTO_ID': produtoId,
       }),
     );
     if (response.statusCode == 200) {

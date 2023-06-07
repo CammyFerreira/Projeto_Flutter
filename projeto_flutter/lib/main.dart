@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: primaryColor,
       ),
-      initialRoute: '/profile',
+      initialRoute: '/',
       routes: {
         '/': (_) => const HomePage(),
         '/splash': (_) => const SplashView(),

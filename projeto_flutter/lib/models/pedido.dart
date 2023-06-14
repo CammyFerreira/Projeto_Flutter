@@ -23,6 +23,17 @@ class Pedido {
       ),
     );
   }
+  
+  double calcularTotal() {
+    double total = 0.0;
+    for (var item in itensPedido) {
+      final double itemPreco =
+          double.parse(item.quantidade.toStringAsFixed(2)) *
+              double.parse(item.preco);
+      total += itemPreco;
+    }
+    return total;
+  }
 }
 
 class ItemPedido {

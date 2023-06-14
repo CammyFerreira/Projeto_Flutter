@@ -1,18 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/controllers/pedido_controller.dart';
 import 'package:projeto_flutter/models/pedido.dart';
+import 'package:projeto_flutter/components/card_pedidos.dart';
 
-class UserProfileScreen extends StatelessWidget {
-  // final String? userName;
-  // final String? email;
-  // final String? address;
-
+class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({
     super.key,
-    // this.userName,
-    // this.email,
-    // this.address,
   });
+
+  @override
+  State<UserProfileScreen> createState() => _UserProfileScreenState();
+}
+
+class _UserProfileScreenState extends State<UserProfileScreen> {
+  final PedidoController _pedidoController = PedidoController();
+  List<Pedido> _pedidos = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchPedidos();
+  }
+
+  Future<void> _fetchPedidos() async {
+    List<Pedido> pedidos = await _pedidoController.fetchPedidos();
+    setState(() {
+      _pedidos = pedidos;
+    });
+  }
+
+  Row _logout() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(Icons.exit_to_app_outlined, color: Colors.red),
+        TextButton(
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/login');
+          },
+          child: const Text(
+            'Logout',
+            style: TextStyle(color: Colors.red),
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,111 +53,49 @@ class UserProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Meu Perfil'),
       ),
-      body: CardExample(),
+      body: _pedidos.isEmpty
+          ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.sentiment_dissatisfied_outlined,
+                size: 90,
+              ),
+              const Text(
+                'Você não possui pedidos',
+                style: TextStyle(fontSize: 24),
+              ),
+              const SizedBox(
+                height: 300,
+              ),
+              _logout(),
+            ],
+          )
+          : Column(
+              children: [
+                ListView.builder(
+                  itemCount: _pedidos.length,
+                  shrinkWrap: true,
+                  itemBuilder: (BuildContext context, int index) {
+                    Pedido pedido = _pedidos[index];
+                    if (_pedidos.isEmpty) {
+                      return Center(
+                        child: Column(
+                          children: const [
+                            Icon(Icons.sentiment_very_dissatisfied),
+                            Text('Você ainda não possui nenhum pedido'),
+                          ],
+                        ),
+                      );
+                    }
+                    return CardPedidos(pedido: pedido);
+                  },
+                ),
+                const Spacer(),
+                _logout(),
+              ],
+            ),
     );
   }
-}
-
-final PedidoController pedidoController = PedidoController();
-
-
-class CardExample extends StatelessWidget {
-  // const CardExample({super.key});
-
-  // final List names = [
-  //   "#83",
-  //   "#29",
-  //   "#39",
-  //   "#12",
-  //   "#17",
-  //   "#20",
-  //   "#32",
-  //   "#40",
-  //   "#63",
-  //   "#75"
-  // ];
-
-  // final List jobs = [
-  //   "29/05/2023",
-  //   "29/05/2023",
-  //   "29/05/2023",
-  //   "29/05/2023",
-  //   "29/05/2023",
-  //   "29/05/2023",
-  //   "29/05/2023",
-  //   "29/05/2023",
-  //   "29/05/2023",
-  //   "29/05/2023"
-  // ];
-
-  CardExample({super.key});
-
-  @override
- Widget build(BuildContext context) {
-  return Scaffold(
-    body: ListView.builder(
-      itemCount: pedidoController.pedidos.length,
-      shrinkWrap: true,
-      itemBuilder: (BuildContext context, int index) {
-        Pedido pedido = pedidoController.pedidos[index];
-
-        return Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-          child: Card(
-            elevation: 5.0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      const SizedBox(width: 8.0),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text('Pedido ID: ${pedido.pedidoId}',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text('Status: ${pedido.statusId}',
-                              style: const TextStyle(color: Colors.grey),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Levar para a tela de itens do pedido
-                      },
-                      child: const Text('Detalhes'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    ),
-  );
-}
 }

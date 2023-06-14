@@ -96,13 +96,13 @@ class HomeView extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            // Navigator.of(context).push(
-                            //   MaterialPageRoute(
-                            //     builder: (BuildContext context) =>
-                            //         const ListPage(),
-                            //   ),
-                            // );
-                            PedidoController( ).fetchPedidos();
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const ListPage(),
+                              ),
+                            );
+      
                           },
                           child: const Text('Ver todos'),
                         ),

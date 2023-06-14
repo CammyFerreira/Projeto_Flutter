@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/cadastro.dart';
 import 'package:projeto_flutter/views/carrinho.dart';
 import 'package:projeto_flutter/views/bottom_navigation.dart';
 import 'package:projeto_flutter/views/list_categories.dart';
@@ -41,11 +42,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: primaryColor,
       ),
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
         '/': (_) => const HomePage(),
         '/splash': (_) => const SplashView(),
         '/login': (_) => LoginView(),
+        '/cadastro': (_) => CadastroView(),
         '/list': (_) => const ListPage(),
         '/carrinho': (_) => const CarrinhoView(),
         '/finalizado': (_) => const PedidoFinalizado(),

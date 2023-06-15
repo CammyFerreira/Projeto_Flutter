@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:projeto_flutter/components/categorias_home.dart';
 import 'package:projeto_flutter/views/busca.dart';
 import 'package:projeto_flutter/views/categorias_view.dart';
-import 'package:projeto_flutter/controllers/pedido_controller.dart';
 import 'package:projeto_flutter/views/fragments/caroussel_products.dart';
+import 'package:projeto_flutter/views/list_page.dart';
 
 final themeMode = ValueNotifier(2);
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/models/pedido.dart';
+import 'package:intl/intl.dart';
 
 class CardPedidos extends StatelessWidget {
   const CardPedidos({super.key, required this.pedido});
@@ -7,6 +8,9 @@ class CardPedidos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String dataPedidoString = pedido.dataPedido;
+    DateTime dataPedido = DateTime.parse(dataPedidoString);
+    String dataFormatada = DateFormat('dd/MM/yyyy').format(dataPedido);
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
@@ -31,7 +35,7 @@ class CardPedidos extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Pedido ID: ${pedido.pedidoId}',
+                        'Pedido número: ${pedido.pedidoId}',
                         style: const TextStyle(
                             color: Colors.black,
                             fontSize: 18.0,
@@ -40,7 +44,7 @@ class CardPedidos extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0),
                         child: Text(
-                          'Data: ${pedido.dataPedido}',
+                          'Data: $dataFormatada',
                           style: const TextStyle(color: Colors.grey),
                         ),
                       ),

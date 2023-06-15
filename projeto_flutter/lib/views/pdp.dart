@@ -79,11 +79,15 @@ class PDPView extends StatelessWidget {
           bottomRight: Radius.circular(10),
         ),
       ),
-      child: Helpers.getProductImage(
-        '',
-        310,
-        double.infinity,
-      ),
+      child: Image.network(
+          product.imagemProduto.isEmpty
+              ? 'images/logo.png'
+              : product.imagemProduto[0].imagemUrl,
+          height: 310,
+          fit: BoxFit.contain,
+          width: double.infinity, errorBuilder: (context, error, stackTrace) {
+        return Image.asset('images/logo.png');
+      }),
     );
   }
 

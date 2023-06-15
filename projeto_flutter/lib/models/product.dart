@@ -5,6 +5,7 @@ class Product {
   String preco;
   String desconto;
   int produtoAtivo;
+  List<ImagemProduto> imagemProduto;
 
   Product({
     required this.idProduto,
@@ -13,6 +14,7 @@ class Product {
     required this.preco,
     required this.desconto,
     required this.produtoAtivo,
+    required this.imagemProduto,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,35 @@ class Product {
       preco: json['preco_produto'],
       desconto: json['desconto_produto'],
       produtoAtivo: json['produto_ativo'],
+      imagemProduto: List<ImagemProduto>.from(
+        json['imagem_produto'].map(
+          (item) => ImagemProduto.fromJson(item),
+        ),
+      ),
     );
   }
 }
+
+class ImagemProduto {
+  int idImagem;
+  int imagemOrdem;
+  int produtoId;
+  String imagemUrl;
+
+  ImagemProduto({
+    required this.idImagem,
+    required this.imagemOrdem,
+    required this.produtoId,
+    required this.imagemUrl,
+  });
+
+  factory ImagemProduto.fromJson(Map<String, dynamic> json) {
+    return ImagemProduto(
+      idImagem: json['id_imagem'],
+      imagemOrdem: json['imagem_ordem'],
+      produtoId: json['produto_id'],
+      imagemUrl: json['imagem_url'],
+    );
+  }
+}
+

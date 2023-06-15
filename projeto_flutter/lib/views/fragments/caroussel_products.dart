@@ -46,6 +46,7 @@ class _CarousselProductsState extends State<CarousselProducts> {
               description: item.descricao,
               discount: item.desconto,
               price: item.preco,
+              image: item.imagemProduto[0].imagemUrl,
               onTap: () async {
               final response = await http.get(Uri.parse(
                   'http://10.0.2.2:8000/api/produtos?filtro=id_produto:${item.idProduto}'));

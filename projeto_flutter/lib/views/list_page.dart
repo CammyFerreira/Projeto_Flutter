@@ -50,6 +50,7 @@ class _ListPageState extends State<ListPage> {
                 description: _products[index].descricao,
                 discount: _products[index].desconto,
                 price: _products[index].preco,
+                image: _products[index].imagemProduto.isNotEmpty ? _products[index].imagemProduto[0].imagemUrl : '',
                 onTap: () async {
                   final response = await http.get(Uri.parse(
                       'http://10.0.2.2:8000/api/produtos?filtro=id_produto:${_products[index].idProduto}'));

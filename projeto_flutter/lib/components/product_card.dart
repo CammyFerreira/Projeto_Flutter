@@ -7,6 +7,7 @@ class ProductCard extends StatelessWidget {
     required this.description,
     required this.price,
     required this.discount,
+    this.image,
     this.onTap,
   });
 
@@ -14,6 +15,7 @@ class ProductCard extends StatelessWidget {
   final String description;
   final String price;
   final String discount;
+  final String? image;
   final Function()? onTap;
 
   @override
@@ -31,7 +33,7 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _getImage(),
+                Align(alignment: Alignment.center,child: _getImage(),),
                 Expanded(child: _getName()),
                 _getDescription(),
                 Padding(
@@ -47,10 +49,13 @@ class ProductCard extends StatelessWidget {
     );
   }
 
-  Text _getName() {
-    return Text(
-      name,
-      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+  Padding _getName() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 4),
+      child: Text(
+        name,
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+      ),
     );
   }
 
@@ -98,10 +103,13 @@ class ProductCard extends StatelessWidget {
   }
 
   Image _getImage() {
-    return Image.asset(
-      'images/icon.png',
+    return Image.network(
+      image ?? '',
       height: 90,
       width: 90,
+      errorBuilder: (context, error, stackTrace) {
+        return Image.asset('images/logo.png'); 
+      },
     );
   }
 }

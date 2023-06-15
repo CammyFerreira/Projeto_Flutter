@@ -13,56 +13,46 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> list = ['images/carrinhoBanner.png', 'images/barbieBanner.png', 'images/pokemonBanner.png'];
+    List<String> list = [
+      'images/carrinhoBanner.png',
+      'images/barbieBanner.png',
+      'images/pokemonBanner.png'
+    ];
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 32),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(top: 8, left: 8),
+          child: Wrap(
+            children: [
+              Image.asset(
+                'images/fox.png',
+              ),
+              Image.asset(
+                'images/trot.png',
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const Busca(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 24),
           child: Column(
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white70,
-                    border: Border.all(
-                      color: Colors.deepPurple[200]!,
-                      width: 2,
-                      style: BorderStyle.solid,
-                    ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          enabled: true,
-                          readOnly: true,
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) => const Busca(),
-                            ),
-                          ),
-                          decoration: const InputDecoration(
-                            hintText: 'Pesquisar...',
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                      const IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: null
-                      ),
-                    ],
-                  ),
-                ),
-              ),
               CarouselSlider(
                 options: CarouselOptions(
                   autoPlay: true,
@@ -102,7 +92,6 @@ class HomeView extends StatelessWidget {
                                     const ListPage(),
                               ),
                             );
-      
                           },
                           child: const Text('Ver todos'),
                         ),

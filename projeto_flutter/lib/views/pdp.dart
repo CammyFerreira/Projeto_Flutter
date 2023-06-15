@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:projeto_flutter/controllers/cart_controller.dart';
-import 'package:projeto_flutter/helpers/helpers.dart';
 import 'package:projeto_flutter/models/product.dart';
 
 class PDPView extends StatelessWidget {
@@ -16,9 +15,8 @@ class PDPView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(product.nome),
-        ),
+        title: Text(product.nome),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(

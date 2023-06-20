@@ -38,7 +38,7 @@ class _ItensPedidoState extends State<ItensPedido> {
           ),
           const Spacer(),
           Container(
-            color: Colors.amber,
+            color: Color.fromARGB(134, 4, 240, 201),
             height: 50,
             width: MediaQuery.of(context).size.width,
             child: Padding(

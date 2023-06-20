@@ -28,14 +28,14 @@ class _CategoriasHomeState extends State<CategoriasHome> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Categoria?> firstEigthCategories = _categorias.take(8).toList();
+    final List<Categoria?> firstEigthCategories = _categorias.take(6).toList();
     return SizedBox(
       height: 200,
       child: GridView.count(
-        mainAxisSpacing: 5,
+        mainAxisSpacing: 25,
         crossAxisSpacing: 5,
         primary: false,
-        crossAxisCount: 4,
+        crossAxisCount: 3,
         childAspectRatio: 2.0,
         children: List.generate(
           firstEigthCategories.length,
@@ -47,7 +47,7 @@ class _CategoriasHomeState extends State<CategoriasHome> {
                   // Lógica do botão
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurple[300],
+                  backgroundColor: Color.fromARGB(134, 4, 240, 201),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

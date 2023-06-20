@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: primaryColor,
       ),
-      initialRoute: '/login',
+      initialRoute: '/',
       routes: {
         '/': (_) => const HomePage(),
         '/splash': (_) => const SplashView(),
@@ -51,7 +51,6 @@ class MyApp extends StatelessWidget {
         '/list': (_) => const ListPage(),
         '/carrinho': (_) => const CarrinhoView(),
         '/finalizado': (_) => const PedidoFinalizado(),
-        '/categorias': (_) => const ListCategories(),
         '/profile': (_) =>  const UserProfileScreen(),
         '/itens-pedido': (_) => const ItensPedido(),
       },

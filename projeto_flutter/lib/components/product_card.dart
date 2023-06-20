@@ -26,14 +26,17 @@ class ProductCard extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Card(
-          elevation: 2,
+          elevation: 3,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(alignment: Alignment.center,child: _getImage(),),
+                Align(
+                  alignment: Alignment.center,
+                  child: _getImage(),
+                ),
                 Expanded(child: _getName()),
                 _getDescription(),
                 Padding(
@@ -96,7 +99,10 @@ class ProductCard extends StatelessWidget {
         discount == '0.00'
             ? ''
             : 'R\$${(double.parse(price) - double.parse(discount)).toStringAsFixed(2)}',
-        style: const TextStyle(fontSize: 12),
+        style: const TextStyle(
+            fontSize: 12,
+            color: Color.fromRGBO(23, 174, 39, 1),
+            fontWeight: FontWeight.bold),
       );
     }
     return const Text('');
@@ -108,7 +114,7 @@ class ProductCard extends StatelessWidget {
       height: 90,
       width: 90,
       errorBuilder: (context, error, stackTrace) {
-        return Image.asset('images/logo.png'); 
+        return Image.asset('images/logo.png');
       },
     );
   }

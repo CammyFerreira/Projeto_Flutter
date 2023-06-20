@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/controllers/categorias_controller.dart';
 import 'package:projeto_flutter/models/category.dart';
+import 'package:projeto_flutter/views/list_categories.dart';
 
 class CategoriasHome extends StatefulWidget {
   const CategoriasHome({super.key});
@@ -44,10 +45,18 @@ class _CategoriasHomeState extends State<CategoriasHome> {
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: ElevatedButton(
                 onPressed: () {
-                  // Lógica do botão
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ListCategories(
+                        categoryId: _categorias[index]!.idCategoria,
+                        nomeCategoria: _categorias[index]!.nomeCategoria,
+                      ),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(134, 4, 240, 201),
+                  backgroundColor: const Color.fromARGB(134, 4, 240, 201),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

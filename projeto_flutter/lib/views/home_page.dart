@@ -20,30 +20,31 @@ class HomeView extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(20),
+          ),
+        ),
         leading: Padding(
-          padding: const EdgeInsets.only(top: 8, left: 8),
-          child: Wrap(
-            children: [
-              Image.asset(
-                'images/fox.png',
-              ),
-              Image.asset(
-                'images/trot.png',
-              ),
-            ],
+          padding: const EdgeInsets.only(left: 8),
+          child: Image.asset(
+            'images/logo.png',
           ),
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const Busca(),
-                ),
-              );
-            },
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const Busca(),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -81,8 +82,8 @@ class HomeView extends StatelessWidget {
                         const Text(
                           'Produtos',
                           style: TextStyle(
-                            fontSize: 24,
-                          ),
+                              fontSize: 24,
+                              color: Color.fromRGBO(255, 94, 61, 1)),
                         ),
                         TextButton(
                           onPressed: () {
@@ -93,7 +94,11 @@ class HomeView extends StatelessWidget {
                               ),
                             );
                           },
-                          child: const Text('Ver todos'),
+                          child: const Text(
+                            'Ver todos',
+                            style: TextStyle(
+                                color: Color.fromRGBO(255, 94, 61, 1)),
+                          ),
                         ),
                       ],
                     ),
@@ -114,6 +119,7 @@ class HomeView extends StatelessWidget {
                             'Categorias',
                             style: TextStyle(
                               fontSize: 24,
+                              color: Color.fromRGBO(118, 50, 213, 1),
                             ),
                           ),
                           TextButton(
@@ -125,7 +131,11 @@ class HomeView extends StatelessWidget {
                                 ),
                               );
                             },
-                            child: const Text('Ver todas'),
+                            child: const Text(
+                              'Ver todas',
+                              style: TextStyle(
+                                  color: Color.fromRGBO(118, 50, 213, 1)),
+                            ),
                           ),
                         ],
                       ),

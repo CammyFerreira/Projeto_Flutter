@@ -113,7 +113,7 @@ class CadastroView extends StatelessWidget {
                                     (result) {
                                       if (result) {
                                         Navigator.of(context)
-                                            .pushReplacementNamed('/');
+                                            .pushReplacementNamed('/login');
                                       } else {
                                         isLoading = false;
                                         ScaffoldMessenger.of(context)

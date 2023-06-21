@@ -20,15 +20,16 @@ class HomeView extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
+        leading: Container(),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(20),
           ),
         ),
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8),
+        title: Padding(
+          padding: const EdgeInsets.all(42),
           child: Image.asset(
-            'images/logo.png',
+            'images/foxtrot-horizontal.png',
           ),
         ),
         actions: [
